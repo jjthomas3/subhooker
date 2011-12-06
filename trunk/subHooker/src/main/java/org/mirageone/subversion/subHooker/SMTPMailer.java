@@ -11,6 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+// This class needs replacing, this is student level code.
 
 public class SMTPMailer {
 	
