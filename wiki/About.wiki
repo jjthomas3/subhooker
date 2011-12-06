@@ -1,0 +1,19 @@
+#subHooker, a simple Subversion pre/post-hook implementation, supports localization, html and plain text post commit e-mail messages, and a nice customizable e-mail template system.
+
+= Introduction =
+
+ subHooker started out from the need to provide a simple hook implementation that could easily be cloned, was configurable, and could send nicely formatted HTML based post-commit messages. It has since grown to support localization, customizable e-mail templates and more.
+
+
+= Features =
+
+  * Enforce required commit logs, configurable - pre commit
+  * Enforce minimal commit log length, configurable - pre commit
+  * Enforce required work, defect, or backlog item, configurable using standard Java RegEX - pre commit
+  * Configurable email template system, for both plain and html e-mail. - post commit.
+  * Post commit email is configurable:
+   ** Turn Diff on or off
+   ** Turn Change List (Changed Paths) on off.
+   ** Plain Text or HTML Based e-mail.
+  * Email client built in, simply configure the SMTP preferences.
+  * Supports Localization using standard I18N message bundles.
