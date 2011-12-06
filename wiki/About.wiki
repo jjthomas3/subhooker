@@ -1,4 +1,4 @@
-#subHooker, a simple Subversion pre/post-hook implementation, supports localization, html and plain text post commit e-mail messages, and a nice customizable e-mail template system.
+# subHooker, a simple Subversion pre/post-hook implementation, supports localization, html and plain text post commit e-mail messages, and a nice customizable e-mail template system.
 
 = Introduction =
 
