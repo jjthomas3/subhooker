@@ -1,0 +1,36 @@
+<assembly>
+    <id>bin</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/etc</directory>
+            <outputDirectory>etc</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/logs</directory>
+            <outputDirectory>logs</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/i18nSupport</directory>
+            <outputDirectory>i18nSupport</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>emailTemplates</directory>
+            <outputDirectory>emailTemplates</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/sampleHookScripts</directory>
+            <outputDirectory>sampleHookScripts</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>target/appassembler/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>target/appassembler/repo</directory>
+            <outputDirectory>repo</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

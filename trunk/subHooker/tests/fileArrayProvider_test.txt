@@ -1,0 +1,13 @@
+user-one@test.case
+user-two@test.case
+user-three@test.case
+user-four@test.case
+user-five@test.case
+## This line should be ignored as should the blank line that follows
+
+user-six@test.case
+
+
+
+## This should also be ignored.
+## When all is said and done there should be 6 elements to the e-mail array.

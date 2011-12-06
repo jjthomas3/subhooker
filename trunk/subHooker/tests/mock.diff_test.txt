@@ -1,0 +1,75 @@
+Modified: dudeman/trunk/smackola/src/org/gudy/smackola/ui/swt/components/AnotherFakeClassName.java
+===================================================================
+--- dudeman/trunk/smackola/src/org/gudy/smackola/ui/swt/components/AnotherFakeClassName.java	2011-08-30 17:06:29 UTC (rev 26697)
++++ dudeman/trunk/smackola/src/org/gudy/smackola/ui/swt/components/AnotherFakeClassName.java	2011-08-30 17:08:55 UTC (rev 26698)
+@@ -570,16 +570,17 @@
+   	//if (!newRow.getParent().equalsTableOrTree(table))
+   	//	return false;
+ 
+-  	if (!isVisible) {
+-  		if (newRow.getData("TableRow") != null) {
+-    		newRow.setData("TableRow", null);
+-    		table.deselect(newRow);
+-    		return true;
+-  		}
+-  		return false;
+-  	}
++//  	if (!isVisible) {
++//  		// Q&D, clear out.. we'll fill it correctly when it's visible
++//  		if (newRow.getData("TableRow") != null) {
++//    		newRow.setData("TableRow", null);
++//    		table.deselect(newRow);
++//    		return true;
++//  		}
++//  		//System.out.println("quickclear " + table.indexOf(newRow));
++//  		return false;
++//  	}
+ 		//System.out.println("slowset " + table.indexOf(newRow));
+ 
+   	boolean lastItemExisted = item != null && !item.isDisposed();
+   	
+   	Modified: plugins/crapola/com/stuff/plugins/widgetz/SomeFakeClassName.java
+===================================================================
+--- plugins/crapola/com/stuff/plugins/widgetz/SomeFakeClassName.java	2010-10-30 03:01:57 UTC (rev 25968)
++++ plugins/crapola/com/stuff/plugins/widgetz/SomeFakeClassName.java	2010-10-30 03:05:25 UTC (rev 25969)
+@@ -182,7 +182,7 @@
+ 			Composite cCreatedAgo = new Composite(parent, SWT.BORDER);
+ 			cCreatedAgo.setLayout(new GridLayout(2, false));
+ 			fd = Utils.getFilledFormData();
+-			fd.left = new FormAttachment(cMinSeeds);
++			fd.left = new FormAttachment(cMinSeeds, 2);
+ 			fd.right = null;
+ 			cCreatedAgo.setLayoutData(fd);
+ 			Label lblCreatedAgo = new Label(cCreatedAgo, SWT.NONE);
+@@ -200,7 +200,7 @@
+ 			Composite cMinRank = new Composite(parent, SWT.BORDER);
+ 			cMinRank.setLayout(new GridLayout(2, false));
+ 			fd = Utils.getFilledFormData();
+-			fd.left = new FormAttachment(cCreatedAgo);
++			fd.left = new FormAttachment(cCreatedAgo, 2);
+ 			fd.right = null;
+ 			cMinRank.setLayoutData(fd);
+ 			Label lblMinRank = new Label(cMinRank, SWT.NONE);
+@@ -219,7 +219,7 @@
+ 			Composite cChecks = new Composite(parent, SWT.BORDER);
+ 			cChecks.setLayout(new GridLayout(1, false));
+ 			fd = Utils.getFilledFormData();
+-			fd.left = new FormAttachment(cMinRank);
++			fd.left = new FormAttachment(cMinRank, 2);
+ 			fd.right = null;
+ 			cChecks.setLayoutData(fd);
+ 			Button chkShowPrivate = new Button(cChecks, SWT.CHECK);
+
+Modified: plugins/crapola/com/stuff/plugins/widgetz/skins/mybogus.properties
+===================================================================
+--- plugins/crapola/com/stuff/plugins/widgetz/skins/mybogus.properties	2010-10-30 03:01:57 UTC (rev 25968)
++++ plugins/crapola/com/stuff/plugins/widgetz/skins/mybogus.properties	2010-10-30 03:05:25 UTC (rev 25969)
+@@ -28,6 +28,8 @@
+ dudeview.smugola.type=container
+ dudeview.smugola.view=smugola
+ dudeview.smugola.attach.template=template.fill
++dudeview.smugola.attach.top=0,1
++dudeview.smugola.attach.bottom=100,-1
+ dudeview.smugola.attach.left=dudeview.title,10
+ dudeview.smugola.attach.right=dudeview.filterbox,-5
+ dudeview.smugola.height=30
