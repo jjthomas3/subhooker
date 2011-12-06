@@ -67,12 +67,6 @@ public class Program {
 			System.err.println(Arrays.toString(args));
 			this.setExitCode(420);
 			return error;
-		} catch (InterruptedException e) {
-			String error=e.getLocalizedMessage();
-			log.error("Attempting to run \"" + Arrays.toString(args) + "\" has failed:");
-			log.error(error);
-			System.err.println(error);
-			System.err.println(Arrays.toString(args));
 		}catch(Exception e){
 			String error=e.getLocalizedMessage();
 			log.error("Attempting to run \"" + Arrays.toString(args) + "\" has failed:");

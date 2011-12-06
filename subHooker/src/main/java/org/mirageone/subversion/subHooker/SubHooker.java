@@ -10,33 +10,33 @@ import org.apache.log4j.Logger;
 
 public class SubHooker {
 	
-	private static Properties props = new Properties();
-	private static File propsFile = new File(System.getProperty("basedir") + File.separator + "etc"+ File.separator + "subHooker.properties");
-	private static String svnLookPath;
-	private static File emailList;
-	private static String mailServer;
-	private static String mailPort;
-	private static String mailProtocol;
-	private static String mailFromAddress;
-	private static String mailAuthUser;
-	private static String mailAuthPassword;
-	private static String mailSubjectTag;
-	private static String mailFormat;
-	private static Boolean mailUseAuthentication;
-	private static Boolean nagNoLog;
-	private static Boolean postShowDiff;
-	private static Boolean postShowChangeset;
-	private static Boolean preCommitLogRequired;
-	private static int preCommitMinLength;
-	private static Boolean preCommitBliNumberRequired;
-	private static String preCommitRegexSearch;
-	private static SimpleI18n simpleI18n = new SimpleI18n();
-	private static String REV_PROP;
-	private static String REPO_PATH;
-	private static String REPO_NAME;
-	private static String HOOK_TYPE;
-	static Logger log = Logger.getLogger(SubHooker.class);
-	private static String[] emailRecipients;
+	private Properties props = new Properties();
+	private File propsFile = new File(System.getProperty("basedir") + File.separator + "etc"+ File.separator + "subHooker.properties");
+	private String svnLookPath;
+	private File emailList;
+	private String mailServer;
+	private String mailPort;
+	private String mailProtocol;
+	private String mailFromAddress;
+	private String mailAuthUser;
+	private String mailAuthPassword;
+	private String mailSubjectTag;
+	private String mailFormat;
+	private Boolean mailUseAuthentication;
+	private Boolean nagNoLog;
+	private Boolean postShowDiff;
+	private Boolean postShowChangeset;
+	private Boolean preCommitLogRequired;
+	private int preCommitMinLength;
+	private Boolean preCommitBliNumberRequired;
+	private String preCommitRegexSearch;
+	private SimpleI18n simpleI18n = new SimpleI18n();
+	private String REV_PROP;
+	private String REPO_PATH;
+	private String REPO_NAME;
+	private String HOOK_TYPE;
+	Logger log = Logger.getLogger(SubHooker.class);
+	private String[] emailRecipients;
 	
 	/*
 	 * Program should take 4 arguments - 
@@ -46,7 +46,7 @@ public class SubHooker {
 	 * @throws RuntimeException 
 	 */
 	
-	public static void main(String[] args) throws RuntimeException {
+	public void main(String[] args) throws RuntimeException {
 
 		if (args.length!=3){
 			String message=simpleI18n.getKey("COMMAND_INVALID_NUMBER_ARGS");
@@ -59,7 +59,6 @@ public class SubHooker {
 		REV_PROP = args[2];
 		
 		initHooker();
-		
 		log.info("subHooker initialized, Subversion Hooker: | HOOK_TYPE: "+HOOK_TYPE+" | REPO_PATH: "+REPO_PATH+" | REV_PROP: "+REV_PROP+" | REPO_NAME: "+REPO_NAME);
 		
 		if(HOOK_TYPE.equalsIgnoreCase("post")){
@@ -74,7 +73,7 @@ public class SubHooker {
 		}
 	}
 	
-	private static void postCommit() throws RuntimeException {
+	private void postCommit() throws RuntimeException {
 		
 		String[] getAuthor = {svnLookPath, "author", REPO_PATH, "-r", REV_PROP};
 		String[] getLog = {svnLookPath, "log", REPO_PATH, "-r", REV_PROP};
@@ -127,7 +126,7 @@ public class SubHooker {
 		}
 	}
 	
-	private static void preCommit() throws RuntimeException{
+	private void preCommit() throws RuntimeException{
 		String[] getPreAuthor = {svnLookPath, "author", REPO_PATH, "-t", REV_PROP};
 		String[] getPreLog = {svnLookPath, "log", REPO_PATH, "-t", REV_PROP};
 	
@@ -158,7 +157,7 @@ public class SubHooker {
 		}
 	}
 	
-	private static boolean loadProps(Properties properties, File propsFile) {
+	private boolean loadProps(Properties properties, File propsFile) {
 		
 		Boolean success=true;
 		FileInputStream fs =  null;
@@ -174,7 +173,7 @@ public class SubHooker {
 		return success;
 	}
 	
-	private static boolean initHooker() throws RuntimeException{
+	private boolean initHooker() throws RuntimeException{
 		if (!loadProps(props, propsFile)) {
 			String message = simpleI18n.getKey("CONFIGURATION_INIT_ERR_LOAD_PROPS");
 			log.error(message);
