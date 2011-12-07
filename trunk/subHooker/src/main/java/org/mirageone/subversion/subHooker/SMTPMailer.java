@@ -11,6 +11,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
+
 // This class needs replacing, this is student level code.
 
 public class SMTPMailer {
@@ -18,13 +20,20 @@ public class SMTPMailer {
 	private Properties props = new Properties();
 	private boolean ready = false;
 	private String mailFormat;
-	
-    public SMTPMailer(String protocol, String host ,String port, String format){
+	static Logger log = Logger.getLogger(SMTPMailer.class);
+    
+	public SMTPMailer(String protocol, String host ,String port, String format){
         this.props.setProperty("mail.transport.protocol", protocol);
         this.props.setProperty("mail.host", host);
         this.props.setProperty("mail.port", port);
         this.mailFormat = format;
         this.ready=true;
+        log.debug("SMTPMailer Class initialized with the following parameters:");
+        log.debug("Mail Transport Protocol : "+protocol);
+        log.debug(" Mail Host              : "+host);
+        log.debug(" Mail Port              : "+port);
+        log.debug(" Mail format            : "+format);
+        log.debug(" Use Authentication     : "+false);
     }
     
     public SMTPMailer(String protocol, String host, String port, String format, String user, String pswd){
@@ -36,6 +45,12 @@ public class SMTPMailer {
     	this.props.setProperty("mail.smtp.auth", "true");
     	this.mailFormat = format;
         this.ready=true;
+        log.debug("SMTPMailer Class initialized with the following parameters:");
+        log.debug("Mail Transport Protocol : "+protocol);
+        log.debug(" Mail Host              : "+host);
+        log.debug(" Mail Port              : "+port);
+        log.debug(" Mail format            : "+format);
+        log.debug(" Use Authentication     : "+true);
     }
     
     public void sendMessage(String to[],String from, String subject, String content){
@@ -43,6 +58,7 @@ public class SMTPMailer {
     		this.props.setProperty("mail.from", from);
     		SendHTMLmessage(to, subject, content);
     	} else {
+    		log.error("SMTPMailer.class -> The SMTP Mailer class was called before it was initialized. The commit was successful, however the commit hook failed");
     		throw new RuntimeException("SMTPMailer.class -> The SMTP Mailer class was called before it was initialized. The commit was successful, however the commit hook failed");
     	}
     }
