@@ -33,7 +33,6 @@ public class SubHooker {
 	private SimpleI18n simpleI18n = new SimpleI18n();
 	private String REV_PROP;
 	private String REPO_PATH;
-	private String REPO_NAME;
 	private String HOOK_TYPE;
 	Logger log = Logger.getLogger(SubHooker.class);
 	private String[] emailRecipients;
@@ -59,7 +58,7 @@ public class SubHooker {
 		REV_PROP = args[2];
 		
 		initHooker();
-		log.info("subHooker initialized, Subversion Hooker: | HOOK_TYPE: "+HOOK_TYPE+" | REPO_PATH: "+REPO_PATH+" | REV_PROP: "+REV_PROP+" | REPO_NAME: "+REPO_NAME);
+		log.info("subHooker initialized, Subversion Hooker: | HOOK_TYPE: "+HOOK_TYPE+" | REPO_PATH: "+REPO_PATH+" | REV_PROP: "+REV_PROP);
 		
 		if(HOOK_TYPE.equalsIgnoreCase("post")){
 			postCommit();
@@ -119,10 +118,10 @@ public class SubHooker {
 		SMTPMailer commitEmail;
 		if(!mailUseAuthentication){
 			commitEmail = new SMTPMailer(mailProtocol, mailServer, mailPort,mailFormat);
-			commitEmail.sendMessage(emailRecipients, mailFromAddress, mailSubjectTag + ": " + REPO_NAME + " Author: " + auth + " Revision: " + REV_PROP , commitMessage);
+			commitEmail.sendMessage(emailRecipients, mailFromAddress, mailSubjectTag  + " Author: " + auth + " Revision: " + REV_PROP , commitMessage);
 		} else {
 			commitEmail = new SMTPMailer(mailProtocol, mailServer, mailPort, mailFormat,  mailAuthUser, mailAuthPassword);
-			commitEmail.sendMessage(emailRecipients, mailFromAddress, mailSubjectTag + ": " + REPO_NAME + " Author: " + auth + " Revision: " + REV_PROP , commitMessage);
+			commitEmail.sendMessage(emailRecipients, mailFromAddress, mailSubjectTag  + " Author: " + auth + " Revision: " + REV_PROP , commitMessage);
 		}
 	}
 	
