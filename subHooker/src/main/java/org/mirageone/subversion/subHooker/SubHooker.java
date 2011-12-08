@@ -117,7 +117,7 @@ public class SubHooker {
 		String commitMessage=commitMail.fetch();
 		
 		SMTPClient client = new SMTPClient(mailServer,mailPort,mailAuthUser,mailAuthPassword,mailUseAuthentication);
-		client.SendMail(emailRecipients, mailFromAddress,  mailSubjectTag  + " Author: " + auth + " Revision: " + REV_PROP , commitMessage, mailFormat);
+		client.sendMail(emailRecipients, mailFromAddress,  mailSubjectTag  + " Author: " + auth + " Revision: " + REV_PROP , commitMessage, mailFormat);
 		
 	}
 	
