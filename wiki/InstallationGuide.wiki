@@ -37,12 +37,12 @@ mail.message.format=HTML
 
 The table below explains each of the settings:
 
-||*mail.server.protocol*|| This controls the transport used by the SMTP class. This option has not been tested woth other protocols yet and should be left alone.||
+||*mail.server.protocol*||This controls the transport used by the SMTP class. This option has not been tested woth other protocols yet and should be left alone.||
 ||*mail.server.name*||The name of your outbound Mail server.||
 ||*mail.server.port*||This is the port your mail server can be reached on, the default for most SMTP Servers is 25||
 ||*mail.server.useAuth*||If set to true you must fill out user name and password fields (below). The client will use Authentication to send email.||
 ||*mail.user.auth.name*||The user name who has send capabilities on the mail server||
 ||*mail.user.auth.password*||The Password of the above user.||
 ||*mail.user.fromAddress*||This is the e-mail address that the post-commit e-mail will be 'from', usually a noreply address or the subversion administrators e-mail address.||
-||*mail.message.subjectTag*||this will be prepended to the subject of the e-mail, which also contains the name of the committer and the revision number||
+||*mail.message.subjectTag*||This will be prepended to the subject of the e-mail, which also contains the name of the committer and the revision number||
 ||*mail.message.format*||This currently supports two options <ul><li>HTML - send nicely formatted HTML email messages</li><li>TEXT - send plain text email messages</li></ul> ||
