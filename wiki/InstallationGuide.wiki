@@ -12,4 +12,4 @@
   * pre-commit: {{{call %~dp0\subHooker-2.1.0\bin\subhooker.bat pre %1 %2 }}}
   * post-commit: {{{call %~dp0\subHooker-2.1.0\bin\subhooker.bat post %1 %2 }}}
 
- *Document incomplete, in progress*
+*Document incomplete, in progress*
