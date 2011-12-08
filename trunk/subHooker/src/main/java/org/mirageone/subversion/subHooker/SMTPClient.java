@@ -32,11 +32,11 @@ public class SMTPClient {
 		this.smtpProtocol = "smtp";
 	}
 	
-	public void SendMail (String to[],String from, String subject, String content, String format) {
-		SendMessage(to,from,subject,content,format);
+	public void sendMail (String to[],String from, String subject, String content, String format) {
+		sendMessage(to,from,subject,content,format);
 	}
 	
-	private void SendMessage(String to[],String from, String subject, String content, String format)  {
+	private void sendMessage(String to[],String from, String subject, String content, String format)  {
 		try{
 			int count = to.length;
 			Message message = new MimeMessage(getSession());
@@ -78,7 +78,7 @@ public class SMTPClient {
 		return Session.getInstance(properties, authenticator);
 	}
 
-	private class Authenticator extends javax.mail.Authenticator {
+	private static class Authenticator extends javax.mail.Authenticator {
 		private PasswordAuthentication authentication;
 		public Authenticator(String username, String password) {
 			authentication = new PasswordAuthentication(username, password);
