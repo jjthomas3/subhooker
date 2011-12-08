@@ -1,15 +1,48 @@
 #summary Basic installation guide for subHooker
 #labels Featured
 
-= Requirements =
+=Requirements=
 
   * Java 1.6 Runtime Environment Installed, properly configured.
  
-= Instructions =
+=Installing subHooker=
 
  subHooker is fairly simple to setup. After downloading subHooker, you'll extract the ZIP file to your repository's hooks folder. You'll end up with a new folder under Hooks, called subHooker-x.x.x, where x.x.x represents the version number. Simply point your precommit.bat or post-commit.bat file to subHooker-x.x.x\bin\subhooker.bat. This line would look something like so under a windows computer:
 
   * pre-commit: {{{call %~dp0\subHooker-2.1.0\bin\subhooker.bat pre %1 %2 }}}
   * post-commit: {{{call %~dp0\subHooker-2.1.0\bin\subhooker.bat post %1 %2 }}}
 
-*Document incomplete, in progress*
+=Configuring subHooker= 
+
+ The configuration of subHooker has varing depths depending on your needs: 
+
+If you want simple functionality and basic post-commit e-mail messages you need only provide a SMTP Host, port and if necessary a username and password for SMTP Authorization. This is accomplished by editing the sunHooker.properties file, which is located under in the subHooker folder, under the etc directory:
+{{{..\hooks\subhooker-2.1.0\etc\subHooker.properties}}}
+
+ Edit the following lines, providing the necessary information:
+
+{{{
+mail.server.protocol=smtp
+mail.server.name=mysmtpserver.company.com
+mail.server.port=25
+mail.server.useAuth=false
+mail.user.auth.name=
+mail.user.auth.password=
+mail.user.fromAddress=noreply@someaddress.com
+mail.message.subjectTag=SVN
+mail.message.format=HTML
+}}}
+
+The table below explains each of the settings:
+
+||mail.server.protocol|| This controls the transport used by the SMTP class. This option has not been tested woth other protocols yet and should be left alone.||
+||mail.server.name||The name of your outbound Mail server.||
+||mail.server.port||This is the port your mail server can be reached on, the default for most SMTP Servers is 25||
+||mail.server.useAuth||If set to true you must fill out user name and password fields (below). The client will use Authentication to send email.||
+||mail.user.auth.name||The user name who has send capabilities on the mail server||
+||mail.user.auth.password||The Password of the above user.||
+||mail.user.fromAddress||This is the e-mail address that the post-commit e-mail will be 'from', usually a noreply address or the subversion administrators e-mail address.||
+||mail.message.subjectTag||this will be prepended to the subject of the e-mail, which also contains the name of the committer and the revision number||
+||mail.message.format||This currently supports two options
+  * HTML - send nicely formatted HTML email messages
+  * TEXT - send plain text email messages||
