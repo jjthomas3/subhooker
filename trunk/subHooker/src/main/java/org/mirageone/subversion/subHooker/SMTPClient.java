@@ -2,6 +2,7 @@ package org.mirageone.subversion.subHooker;
 
 import java.util.Properties;
 
+import javax.mail.AuthenticationFailedException;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -10,6 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 public class SMTPClient {
@@ -30,6 +32,7 @@ public class SMTPClient {
 		this.smtpPassword = pass;
 		this.useAuthentication = auth;
 		this.smtpProtocol = "smtp";
+		if (log.getLevel().equals(Level.DEBUG)){debugDump();}
 	}
 	
 	public void sendMail (String to[],String from, String subject, String content, String format) {
@@ -57,10 +60,23 @@ public class SMTPClient {
 			message.setContent(content, format);
 			Transport.send(message);
 		}
+		catch (AuthenticationFailedException e)
+		{
+			log.error("Authentication Failed, please check your configuration and try again.");
+		}
 		catch(MessagingException e)
 		{
 			log.error(e.getLocalizedMessage());
 		}
+	}
+	
+	private void debugDump(){
+		log.debug("SMTP Server Host                       : "+this.smtpServerHost);
+		log.debug("SMTP Server Port                       : "+this.smtpServerPort);
+		log.debug("SMTP Server Use Authentication         : "+String.valueOf(this.useAuthentication));
+		log.debug("SMTP Server User                       : "+this.smptUserName);
+		log.debug("SMTP Server Password                   : Please see properties file");
+		log.debug("SMTP Transport Protocol                : "+this.smtpProtocol);
 	}
 
 	private Session getSession() {
