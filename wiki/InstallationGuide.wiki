@@ -43,6 +43,4 @@ The table below explains each of the settings:
 ||mail.user.auth.password||The Password of the above user.||
 ||mail.user.fromAddress||This is the e-mail address that the post-commit e-mail will be 'from', usually a noreply address or the subversion administrators e-mail address.||
 ||mail.message.subjectTag||this will be prepended to the subject of the e-mail, which also contains the name of the committer and the revision number||
-||mail.message.format||This currently supports two options
-  * HTML - send nicely formatted HTML email messages
-  * TEXT - send plain text email messages||
+||mail.message.format||This currently supports two options  * HTML - send nicely formatted HTML email messages  * TEXT - send plain text email messages ||
