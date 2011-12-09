@@ -77,8 +77,8 @@ The table below explains each setting:
  If you set BliOrDefectNumberRequired to true, subHooker will perform a Regular Expression search of the Authors commit log, and will expect that there is a match. For example the following regular expression string :
 
 {{{
-([bBdD]\-[0-9]`{`5`}`)
-}}
+([bBdD]\-[0-9]{5})
+}}}
  ...will return true of any of the following strings existed in the Authors commit message.
  
  *B-01234*
