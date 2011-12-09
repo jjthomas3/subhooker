@@ -81,7 +81,7 @@ The table below explains each setting:
 }}}
  ...will return true of any of the following strings existed in the Authors commit message.
  
- *B-01234*
- *b-90122*
- *d-12345*
- *D-99119*
+*B-01234*
+*b-90122*
+*d-12345*
+*D-99119*
