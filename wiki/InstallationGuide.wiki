@@ -85,6 +85,13 @@ The table below explains each setting:
 {{{
 ([bBdD]\-[0-9]{5})
 }}}
- ...will return true of any of the following strings existed in the authors commit message:
+ ...will return true if any of the following strings exist in the authors commit message:
  
 *B-01234* or *b-90122* or *d-12345* or *D-99119*
+
+Lastly choose if you want to have DIFF and Change Lists in the e-mail by modifying the last two options:
+
+{{{
+email.contents.show.diff=true
+email.contents.show.changeset=true
+}}}
