@@ -48,9 +48,12 @@ The table below explains each of the settings:
 ||*mail.message.format*||This currently supports two options <ul><li>HTML - send nicely formatted HTML email messages</li><li>TEXT - send plain text email messages</li></ul> ||
 
 Next you'll want to configure the subversion properties, this is also done while under the etc directory at:
-{{{..\hooks\subhooker-2.1.0\etc\subHooker.properties}}}
+{{{
+..\hooks\subhooker-2.1.0\etc\subHooker.properties
+}}}
 
 You'll want to edit the following properties:
+
 {{{
 svn.lookPath=c:\\Program Files\\Subversion\\bin\\svnlook.exe
 svn.recipiantList=C:\\somepath\\emaillist.txt
@@ -61,7 +64,8 @@ svn.precommit.BliOrDefectNumberRequired=false
 svn.precommit.BliRegex=([bBdD]\-[0-9]{5})
 }}}
 
-The table below explains each setting
+The table below explains each setting:
+
 ||*svn.lookPath*|| This is the path to SVNLOOK, windows should use double back-slashes in the path, like C:\\Program Files\\Subversion\\bin\\svnlook.exe||
 ||*svn.recipiantList*|| The full path to a plain text file of e-mail recipiants, one e-mail address per line||
 ||*svn.nagNoLogCommits*|| If this is set to true, and you allow authors to commit code with no commit message, this will insert a NAG line like "The author of this code commit chose not to post a useful comment"||
@@ -70,7 +74,8 @@ The table below explains each setting
 ||*svn.precommit.BliOrDefectNumberRequired*|| If this is set to true, then the authors commit message must contain a match to the Regular expression, shown below.||
 ||*svn.precommit.BliRegex*|| A standard Java Regular Expression, if required, the authors commit message must contain text matching the regular Expression, see below||
 
- If you set BliOrDefectNumberRequired to true, subHooker will perform a Regular Expression search of the Authors commit log, and will expect that there is a match. For example the following regular expression string:
+ If you set BliOrDefectNumberRequired to true, subHooker will perform a Regular Expression search of the Authors commit log, and will expect that there is a match. For example the following regular expression string :
+
 {{{
 ([bBdD]\-[0-9]{5})
 }}
