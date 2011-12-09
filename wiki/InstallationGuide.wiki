@@ -9,8 +9,14 @@
 
  subHooker is fairly simple to setup. After downloading subHooker, you'll extract the ZIP file to your repository's hooks folder. You'll end up with a new folder under Hooks, called subHooker-x.x.x, where x.x.x represents the version number. Simply point your precommit.bat or post-commit.bat file to subHooker-x.x.x\bin\subhooker.bat. This line would look something like so under a windows computer:
 
-  * pre-commit: {{{call %~dp0\subHooker-2.1.0\bin\subhooker.bat pre %1 %2 }}}
-  * post-commit: {{{call %~dp0\subHooker-2.1.0\bin\subhooker.bat post %1 %2 }}}
+  * pre-commit: 
+{{{
+call %~dp0\subHooker-2.1.0\bin\subhooker.bat pre %1 %2 
+}}}
+  * post-commit: 
+{{{
+call %~dp0\subHooker-2.1.0\bin\subhooker.bat post %1 %2
+}}}
 
 =Configuring subHooker= 
 
