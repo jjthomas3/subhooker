@@ -11,7 +11,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 public class SMTPClient {
@@ -32,7 +31,9 @@ public class SMTPClient {
 		this.smtpPassword = pass;
 		this.useAuthentication = auth;
 		this.smtpProtocol = "smtp";
-		if (log.getLevel().equals(Level.DEBUG)){debugDump();}
+		if(log.isDebugEnabled()){
+			debugDump();
+		}
 	}
 	
 	public void sendMail (String to[],String from, String subject, String content, String format) {
@@ -41,22 +42,25 @@ public class SMTPClient {
 	
 	private void sendMessage(String to[],String from, String subject, String content, String format)  {
 		try{
-			int count = to.length;
+			
 			Message message = new MimeMessage(getSession());
+			// assemble the recipients array, and add it to our message.
+			int count = to.length;
 	        InternetAddress[] recipiants = new InternetAddress[count];
-	        // assemble the recipients array.
 	        for (int i=0; i<count; i++){
 	        	recipiants[i] = new InternetAddress(to[i]); 
 	        }
 	        message.addRecipients(Message.RecipientType.TO, recipiants);
+	        
 			message.addFrom(new InternetAddress[] { new InternetAddress(from)});
 			message.setSubject(subject);
-			
+
 			if(format.equalsIgnoreCase("html")||format.equalsIgnoreCase("htm")){
 				format="text/html; charset=ISO-8859-1";
 			}else if(format.equalsIgnoreCase("text")||format.equalsIgnoreCase("txt")){
 				format="text/plain";
 			}
+			
 			message.setContent(content, format);
 			Transport.send(message);
 		}
@@ -75,13 +79,15 @@ public class SMTPClient {
 		log.debug("SMTP Server Port                       : "+this.smtpServerPort);
 		log.debug("SMTP Server Use Authentication         : "+String.valueOf(this.useAuthentication));
 		log.debug("SMTP Server User                       : "+this.smptUserName);
-		log.debug("SMTP Server Password                   : Please see properties file");
+		log.debug("SMTP Server Password                   : Please see properties file.");
 		log.debug("SMTP Transport Protocol                : "+this.smtpProtocol);
 	}
 
 	private Session getSession() {
+		
 		Authenticator authenticator = new Authenticator(this.smptUserName,this.smtpPassword);
 		Properties properties = new Properties();
+		
 		if(this.useAuthentication){
 			properties.setProperty("mail.smtp.submitter", authenticator.getPasswordAuthentication().getUserName());
 			properties.setProperty("mail.smtp.auth", String.valueOf(this.useAuthentication));

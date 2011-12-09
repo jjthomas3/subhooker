@@ -35,11 +35,11 @@ public class SubHooker {
 	private static String REV_PROP;
 	private static String REPO_PATH;
 	private static String HOOK_TYPE;
-	static Logger log = Logger.getLogger(SubHooker.class);
+	private static Logger log = Logger.getLogger(SubHooker.class);
 	private static String[] emailRecipients;
 	
 	/*
-	 * Program should take 4 arguments - 
+	 * Program should take 3 arguments - 
 	 *   1. Hook type, one of: pre or post
 	 *   2. Repository path
 	 *   3. txID or Revision number of commit

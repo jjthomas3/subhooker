@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 public class Program {
 	
 	private int exitCode=-1;
-	static Logger log = Logger.getLogger(Program.class);
+	private static Logger log = Logger.getLogger(Program.class);
 	
 	public Program(){
 		
