@@ -68,13 +68,13 @@ The table below explains each setting:
 
 || *svn.lookPath* || This is the path to SVNLOOK, windows should use double back-slashes in the path, like C:\\Program Files\\Subversion\\bin\\svnlook.exe||
 || *svn.recipiantList* || The full path to a plain text file of e-mail recipiants, one e-mail address per line||
-|| *svn.nagNoLogCommits* || If this is set to true, and you allow authors to commit code with no commit message, this will insert a NAG line like "The author of this code commit chose not to post a useful comment" ||
-|| *svn.precommit.CommitLogManditory* || If this is set to true, code commits with no commit log will be rejected.||
+|| *svn.`nagNoLogCommits`* || If this is set to true, and you allow authors to commit code with no commit message, this will insert a NAG line like "The author of this code commit chose not to post a useful comment" ||
+|| *svn.precommit.`CommitLogManditory`* || If this is set to true, code commits with no commit log will be rejected.||
 || *svn.precommit.CommitLogMinLength* || If set, this will reject any code commit not containing the minimal amount of characters (not words, but characters)||
 || *svn.precommit.`BliOrDefectNumberRequired`* || If this is set to true, then the authors commit message must contain a match to the Regular expression, shown below.||
 || *svn.precommit.BliRegex* || A standard Java Regular Expression, if required, the authors commit message must contain text matching the regular Expression, see below||
 
- If you set BliOrDefectNumberRequired to true, subHooker will perform a Regular Expression search of the Authors commit log, and will expect that there is a match. For example the following regular expression string :
+ If you set `BliOrDefectNumberRequired` to true, subHooker will perform a Regular Expression search of the Authors commit log, and will expect that there is a match. For example the following regular expression string :
 
 {{{
 ([bBdD]\-[0-9]{5})
