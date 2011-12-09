@@ -79,9 +79,6 @@ The table below explains each setting:
 {{{
 ([bBdD]\-[0-9]{5})
 }}}
- ...will return true of any of the following strings existed in the Authors commit message.
+ ...will return true of any of the following strings existed in the authors commit message:
  
-*B-01234*
-*b-90122*
-*d-12345*
-*D-99119*
+*B-01234* or *b-90122* or *d-12345* or *D-99119*
