@@ -21,7 +21,7 @@
             <configuration>
                <programs>
                   <program>
-                     <mainClass>org.mirageone.subversion.subHooker.SubHooker</mainClass>
+                     <mainClass>org.mirageone.subversion.subHooker.HookMain</mainClass>
                      <name>SubHooker</name>
                   </program>
                </programs>
