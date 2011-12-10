@@ -2,10 +2,10 @@ package org.mirageone.subversion.subHooker;
 
 import org.apache.log4j.Logger;
 
-public class SubHooker {
+public class HookMain {
 
 	private static SimpleI18n simpleI18n = new SimpleI18n();
-	private static Logger log = Logger.getLogger(SubHooker.class);
+	private static Logger log = Logger.getLogger(HookMain.class);
 	
 	/*
 	 * Program should take 3 arguments - 

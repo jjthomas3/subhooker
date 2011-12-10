@@ -9,6 +9,14 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
+/**
+ * @author John
+ *
+ */
+/**
+ * @author John
+ *
+ */
 public class SvnHooks {
 	
 	private Properties props = new Properties();
@@ -39,7 +47,11 @@ public class SvnHooks {
 	private Logger log = Logger.getLogger(SvnHooks.class);
 	private String[] emailRecipients;
 	
-	
+	/**
+	 * @param HOOK_TYPE : One of two value; "pre" for pre commit hook, or "post" for post commit hook
+	 * @param REPO_PATH : The local path, on the server, to the repository, typically supplied by the server.
+	 * @param REV_PROP  : The revision property or transaction id of the commit, also usually supplied by the server.
+	 */
 	public SvnHooks(String HOOK_TYPE, String REPO_PATH, String REV_PROP){
 		this.HOOK_TYPE = HOOK_TYPE;
 		this.REPO_PATH = REPO_PATH;

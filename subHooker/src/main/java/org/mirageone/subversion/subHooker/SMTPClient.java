@@ -23,7 +23,14 @@ public class SMTPClient {
 	private String smtpProtocol;
 	private static Logger log = Logger.getLogger(SMTPClient.class);
 	
-	
+	/**
+	 * SMTPClient used for sending SMTP Messages
+	 * @param host The SMTP Server's name or IP Address
+	 * @param port The port the SMTP Server is listening on, typically 25
+	 * @param user If necessary, the user to use for Authentication
+	 * @param pass If necessary, the password of the authenticating user
+	 * @param auth Set to true if security is required.
+	 */
 	public SMTPClient (String host, String port, String user, String pass, boolean auth){
 		this.smtpServerHost = host;
 		this.smtpServerPort = port;
