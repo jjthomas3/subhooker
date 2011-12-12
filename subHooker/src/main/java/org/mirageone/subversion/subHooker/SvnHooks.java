@@ -9,12 +9,10 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
+
 /**
- * @author John
- *
- */
-/**
- * @author John
+ * @author John J Thomas
+ * 
  *
  */
 public class SvnHooks {
@@ -48,6 +46,7 @@ public class SvnHooks {
 	private String[] emailRecipients;
 	
 	/**
+	 * SvnHooks Constructor, inputs hook type, repository path, and revision or transaction id. 
 	 * @param HOOK_TYPE : One of two value; "pre" for pre commit hook, or "post" for post commit hook
 	 * @param REPO_PATH : The local path, on the server, to the repository, typically supplied by the server.
 	 * @param REV_PROP  : The revision property or transaction id of the commit, also usually supplied by the server.
@@ -114,7 +113,7 @@ public class SvnHooks {
 			svnLog+=simpleI18n.getKey("POST_COMMIT_NO_LOG_NAG");
 		}
 		EmailAssembler commitMail = new EmailAssembler(auth, change, diff, svnLog, REV_PROP, mailFormat, postShowDiff,postShowChangeset);
-		String commitMessage=commitMail.fetch();
+		String commitMessage=commitMail.applyTemplate();
 		
 		SMTPClient client = new SMTPClient(mailServer,mailPort,mailAuthUser,mailAuthPassword,mailUseAuthentication);
 		client.sendMail(emailRecipients, mailFromAddress, mailSubjectTag + " Author: " + auth + " Revision: " + REV_PROP , commitMessage, mailFormat);
