@@ -50,8 +50,11 @@ public class EmailAssembler {
 		
 		loadValuesMap();
 	}
-	
-	public String fetch(){
+	/**
+	 * 
+	 * @return
+	 */
+	public String applyTemplate(){
 		return doIt();
 	}
 
