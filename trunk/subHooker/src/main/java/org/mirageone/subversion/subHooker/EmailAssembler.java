@@ -27,6 +27,7 @@ public class EmailAssembler {
 	private String diffFile;
 	
 	public EmailAssembler(String author, String changes, String diff, String log, String revision, String format, Boolean showDiff, Boolean showChangeset){
+
 		this.strAuthor = author;
 		this.strChanges = changes;
 		this.strLog = log;
@@ -47,7 +48,6 @@ public class EmailAssembler {
 			changeFile  = (new File(System.getProperty("basedir") + File.separator + "emailTemplates"+ File.separator + "htmlTemplate-changeset.html")).toString();
 			diffFile = (new File(System.getProperty("basedir") + File.separator + "emailTemplates"+ File.separator + "htmlTemplate-diff.html")).toString();
 		}
-		
 		loadValuesMap();
 	}
 	/**
