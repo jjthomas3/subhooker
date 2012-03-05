@@ -38,6 +38,7 @@ public class SMTPClient {
 		this.smtpPassword = pass;
 		this.useAuthentication = auth;
 		this.smtpProtocol = "smtp";
+		
 		if(log.isDebugEnabled()){
 			debugDump();
 		}
