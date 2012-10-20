@@ -32,6 +32,7 @@ public class SvnHooks {
 	private String mailFormat;
 	private Boolean mailUseAuthentication;
 	private Boolean nagNoLog;
+	private int postDiffMaxCharacters;
 	private Boolean postShowDiff;
 	private Boolean postShowChangeset;
 	private Boolean preCommitLogRequired;
@@ -96,7 +97,6 @@ public class SvnHooks {
 		String change;
 		String diff;
 		
-		//No need wasting resources getting DIFF and Changeset info if they are disabled.
 		if(postShowChangeset){
 			change=command.run(getChanges);
 		}else{
@@ -105,6 +105,11 @@ public class SvnHooks {
 		
 		if(postShowDiff){
 			diff=command.run(getDiffs);
+			if(diff.length()>postDiffMaxCharacters)
+			{
+				diff=diff.substring(0, postDiffMaxCharacters);
+			}
+			
 		}else{
 			diff="";
 		}
@@ -193,6 +198,7 @@ public class SvnHooks {
 			preCommitBliNumberRequired = Boolean.parseBoolean(props.getProperty("svn.precommit.BliOrDefectNumberRequired"));
 			preCommitRegexSearch = props.getProperty("svn.precommit.BliRegex");
 			
+			postDiffMaxCharacters = Integer.parseInt(props.getProperty("svn.postcommit.DiffMaxCharacters"));
 			postShowDiff = Boolean.parseBoolean(props.getProperty("email.contents.show.diff", "true"));
 			postShowChangeset = Boolean.parseBoolean(props.getProperty("email.contents.show.changeset", "true"));
 			
