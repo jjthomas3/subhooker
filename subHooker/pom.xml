@@ -14,6 +14,29 @@
 	</organization>
 	<build>
 		<plugins>
+		    
+		<plugin>
+		  <groupId>org.codehaus.mojo</groupId>
+		  <artifactId>build-helper-maven-plugin</artifactId>
+		  <version>1.7</version>
+		  <executions>
+		    <execution>
+		      <id>add-test-resource</id>
+		      <phase>generate-test-sources</phase>
+		      <goals>
+		        <goal>add-test-resource</goal>
+		      </goals>
+		      <configuration>
+		        <resources>
+		          <resource>
+		            <directory>src/main/i18nSupport</directory>
+		          </resource>
+		        </resources>
+		      </configuration>
+		    </execution> 
+		  </executions>
+		</plugin>
+
 		 <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>appassembler-maven-plugin</artifactId>
