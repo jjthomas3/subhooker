@@ -24,7 +24,7 @@ The configuration of subHooker has varing depths depending on your needs:
 
 ==Basic==
 
-If you want simple functionality and basic post-commit e-mail messages you need only provide a SMTP Host, port and if necessary a username and password for SMTP Authorization. This is accomplished by editing the sunHooker.properties file, which is located under in the subHooker folder, under the etc directory:
+If you want simple functionality and basic post-commit e-mail messages you need only provide a SMTP Host, port and if necessary a username and password for SMTP Authorization. This is accomplished by editing the subHooker.properties file, which is located under in the subHooker folder, under the etc directory:
 {{{..\hooks\subhooker-2.1.0\etc\subHooker.properties}}}
 
 Edit the following lines, providing the necessary information:
