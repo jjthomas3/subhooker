@@ -10,12 +10,12 @@ import junit.framework.TestCase;
 
 public class EmailAssemblerTest extends TestCase {
 	
-	private String fakeDiff = (new File(System.getProperty("basedir") + File.separator + "tests"+ File.separator + "mock.diff_test.txt")).toString();
 
 	public void testFetch() {
+		
 		String auth="angry-coder";
 		String chang="Changeset Information would normally be here\n\n\n\n\n\n\nIt could take several lines or more.";
-		String diff = readFileAsString(fakeDiff);
+		String diff = (readFileAsString("tests/mock.diff_test.txt"));
 		String revision = "27982";
 		String log = "I'm committing code change x because human resources can't find good programmers so on with the rework.";
 		EmailAssembler emailAssembler = new EmailAssembler(auth, chang, diff, log, revision, "html", true, true);
