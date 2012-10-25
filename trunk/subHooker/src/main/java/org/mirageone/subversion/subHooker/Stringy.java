@@ -28,11 +28,14 @@ public final class Stringy
 	
 	public int countLines()
 	{
-        Pattern pattern = Pattern.compile("(\r\n|\r|\n|\n\r)");
-        Matcher  matcher = pattern.matcher(this.myString);
-        int count = 0;
-        while (matcher.find())
+        Pattern patt = Pattern.compile("(\r\n|\r|\n|\n\r)");
+        Matcher  match = patt.matcher(this.myString);
+        //we start with a count of one because a single string with no line breaks is still one line.
+        int count = 1;
+        while (match.find())
+        {
             count++;
+        }
         return count; 
     }
 	
