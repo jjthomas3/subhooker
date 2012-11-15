@@ -5,27 +5,27 @@ import junit.framework.TestCase;
 public class ProgramTest extends TestCase {
 
 	public void testRun() {
-		String[] dirListing = null;
+		String[] cmdOutput = null;
 		Program test = new Program();
 		
 		if(isWindows()){
 			System.out.println("Testing ability to launch program with arguments (Windows): ");
 			System.out.println("   Launching cmd.exe /c time /t");
-			dirListing = new String[]{"cmd.exe", "/c", "time", "/t"};
+			cmdOutput = new String[]{"cmd.exe", "/c", "time", "/t"};
 		}else if(isMac()){
 			System.out.println("Testing ability to launch program with arguments (Apple OS): ");
 			System.out.println("   Launching ping -c 2 localhost");
-			dirListing = new String[]{"ping", "-c", "2", "localhost"};
+			cmdOutput = new String[]{"ping", "-c", "2", "localhost"};
 		}else if(isUnix()){
 			System.out.println("Testing ability to launch program with arguments (Linux/Unix): ");
 			System.out.println("   Launching ping -c 2 localhost");
-			dirListing = new String[]{"ping", "-c", "2", "localhost"};
+			cmdOutput = new String[]{"ping", "-c", "2", "localhost"};
 		}else{
 			System.out.println("Your OS is not support!!");
-			dirListing = new String[]{"whoami", "/f"};
+			cmdOutput = new String[]{"whoami", "/f"};
 		}
 
-		String result = (test.run(dirListing));
+		String result = (test.run(cmdOutput));
 		System.out.println(result);
 		assertEquals(test.getExitCode(),0);
 		assertNotNull(result);

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class StringyTest extends TestCase {
@@ -13,14 +14,21 @@ public class StringyTest extends TestCase {
 	public void testStringy()
 	{
 		/// load up stringy with a String
-		Stringy myStringy1 = new Stringy(readFileAsString(testFile));
-		// load another one up with the top 10 lines from the first one
-		Stringy myStringy2 = new Stringy(myStringy1.returnTopLines(20));
-		// This should be true if the code works.
-		System.out.println("===================== 20 LINES BELOW =====================");
-		System.out.println(myStringy1.returnTopLines(20));
-		System.out.println("===================== 20 LINES ABOVE =====================");
-		assertEquals(20,myStringy2.countLines());
+		try
+		{
+			Stringy myStringy1 = new Stringy(readFileAsString(testFile));
+			// load another one up with the top 10 lines from the first one
+			Stringy myStringy2 = new Stringy(myStringy1.returnTopLines(20));
+			// This should be true if the code works.
+			System.out.println("===================== 20 LINES BELOW =====================");
+			System.out.println(myStringy1.returnTopLines(20));
+			System.out.println("===================== 20 LINES ABOVE =====================");
+			assertEquals(20,myStringy2.countLines());
+		} 
+		catch (Exception e)
+		{
+			Assert.fail(e.getMessage());
+		}
 	}
 	
     private String readFileAsString(String filePath){

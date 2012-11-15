@@ -33,6 +33,9 @@
 		          <resource>
 		            <directory>src/main/i18nSupport</directory>
 		          </resource>
+		          <resource>
+		            <directory>src/main/etc</directory>
+		          </resource>
 		        </resources>
 		      </configuration>
 		    </execution> 
