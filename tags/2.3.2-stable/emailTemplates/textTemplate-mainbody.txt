@@ -1,0 +1,26 @@
+
+Dear ${SUB_AUTHOR},
+
+**
+** ${EMAIL_HEADING_PREFACE} 
+**********************************************
+
+${EMAIL_PREFACE_TEXT}
+
+**
+** ${EMAIL_HEADING_COMMIT_INFO} 
+**********************************************
+
+   ${EMAIL_CI_TABLE_HDR_AUTHOR}	: ${SUB_AUTHOR}
+   ${EMAIL_CI_TABLE_HDR_REVISION}		: ${SUB_REVISION}
+   
+   *
+   * ${EMAIL_HEADING_AUTHOR_COMMIT_LOG}
+   *******************************************
+   ${SUB_COMMITLOG}
+   
+${SUB_TEMPLATE_CHANGESET}
+${SUB_TEMPLATE_DIFF}
+
+Respectfully,
+Code Administration.

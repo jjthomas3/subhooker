@@ -1,0 +1,27 @@
+<html>
+<head>
+    <style type="text/css">
+		body,td,th {font-family: Arial, Helvetica, sans-serif;font-size: 10px;}
+		.style5 {font-size: 9px}
+	</style>
+</head>
+	<body>
+		<strong>${EMAIL_HEADING_PREFACE}</strong>
+		<p>${EMAIL_PREFACE_TEXT}</p>
+		<h1>${EMAIL_HEADING_COMMIT_INFO}</h1>
+		<table border="1" bordercolor="#CCCCCC" width="640" cellpadding="1" cellspacing="0">
+				<tr>
+					<td><strong>${EMAIL_CI_TABLE_HDR_AUTHOR}</strong></td>
+					<td><strong>${EMAIL_CI_TABLE_HDR_REVISION}</strong></td>
+				</tr>
+				<tr>
+					<td>${SUB_AUTHOR}</td>
+					<td>${SUB_REVISION}</td>
+				</tr>
+		</table>
+		<h2>${EMAIL_HEADING_AUTHOR_COMMIT_LOG}</h2>
+		<pre style="background-color:#F5EEEE">${SUB_COMMITLOG}</pre>
+		${SUB_TEMPLATE_CHANGESET}
+		${SUB_TEMPLATE_DIFF}
+	</body>
+</html>
