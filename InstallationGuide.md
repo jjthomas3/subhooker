@@ -1,0 +1,95 @@
+# Requirements #
+
+  * Java 1.6 Runtime Environment Installed, properly configured.
+
+# Installing subHooker #
+
+> subHooker is fairly simple to setup. After downloading subHooker, you'll extract the ZIP file to your repository's hooks folder. You'll end up with a new folder under Hooks, called subHooker-x.x.x, where x.x.x represents the version number. Simply point your precommit.bat or post-commit.bat file to subHooker-x.x.x\bin\subhooker.bat. This line would look something like so under a windows computer:
+
+  * pre-commit:
+```
+call %~dp0\subHooker-2.1.0\bin\subhooker.bat pre %1 %2 
+```
+  * post-commit:
+```
+call %~dp0\subHooker-2.1.0\bin\subhooker.bat post %1 %2
+```
+
+# Configuring subHooker #
+
+The configuration of subHooker has varing depths depending on your needs:
+
+## Basic ##
+
+If you want simple functionality and basic post-commit e-mail messages you need only provide a SMTP Host, port and if necessary a username and password for SMTP Authorization. This is accomplished by editing the subHooker.properties file, which is located under in the subHooker folder, under the etc directory:
+`..\hooks\subhooker-2.1.0\etc\subHooker.properties`
+
+Edit the following lines, providing the necessary information:
+
+```
+mail.server.protocol=smtp
+mail.server.name=mysmtpserver.company.com
+mail.server.port=25
+mail.server.useAuth=false
+mail.user.auth.name=
+mail.user.auth.password=
+mail.user.fromAddress=noreply@someaddress.com
+mail.message.subjectTag=SVN
+mail.message.format=HTML
+```
+
+The table below explains each of the settings:
+
+|**mail.server.protocol**|This controls the transport used by the SMTP class. This option has not been tested woth other protocols yet and should be left alone.|
+|:-----------------------|:-------------------------------------------------------------------------------------------------------------------------------------|
+|**mail.server.name**|The name of your outbound Mail server.|
+|**mail.server.port**|This is the port your mail server can be reached on, the default for most SMTP Servers is 25|
+|**mail.server.useAuth**|If set to true you must fill out user name and password fields (below). The client will use Authentication to send email.|
+|**mail.user.auth.name**|The user name who has send capabilities on the mail server|
+|**mail.user.auth.password**|The Password of the above user.|
+|**mail.user.fromAddress**|This is the e-mail address that the post-commit e-mail will be 'from', usually a noreply address or the subversion administrators e-mail address.|
+|**mail.message.subjectTag**|This will be prepended to the subject of the e-mail, which also contains the name of the committer and the revision number|
+|**mail.message.format**|This currently supports two options <ul><li>HTML - send nicely formatted HTML email messages</li><li>TEXT - send plain text email messages</li></ul> |
+
+Next you'll want to configure the subversion properties, this is also done while under the etc directory at:
+```
+..\hooks\subhooker-2.1.0\etc\subHooker.properties
+```
+
+You'll want to edit the following properties:
+
+```
+svn.lookPath=c:\\Program Files\\Subversion\\bin\\svnlook.exe
+svn.recipiantList=C:\\somepath\\emaillist.txt
+svn.nagNoLogCommits=true
+svn.precommit.CommitLogManditory=true
+svn.precommit.CommitLogMinLength=20
+svn.precommit.BliOrDefectNumberRequired=false
+svn.precommit.BliRegex=([bBdD]\-[0-9]{5})
+```
+
+The table below explains each setting:
+
+| svn.lookPath | This is the path to SVNLOOK, windows should use double back-slashes in the path, like<br> C:\\Program Files\\Subversion\\bin\\svnlook.exe<br>
+<tr><td> svn.recipiantList </td><td> The full path to a plain text file of e-mail recipiants, one e-mail address per line</td></tr>
+<tr><td> svn.<code>nagNoLogCommits</code></td><td> If this is set to true, and you allow authors to commit code with no commit message, this will insert a NAG line like <br>"The author of this code commit chose not to post a useful comment" </td></tr>
+<tr><td> svn.precommit.<code>CommitLogManditory</code> </td><td> If this is set to true, code commits with no commit log will be rejected.</td></tr>
+<tr><td> svn.precommit.<code>CommitLogMinLength</code> </td><td> If set, this will reject any code commit not containing the minimal amount of characters (not words, but characters)</td></tr>
+<tr><td> svn.precommit.<code>BliOrDefectNumberRequired</code> </td><td> If this is set to true, then the authors commit message must contain a match to the Regular expression, shown below.</td></tr>
+<tr><td> svn.precommit.<code>BliRegex</code> </td><td> A standard Java Regular Expression, if required, the authors commit message must contain text matching the regular Expression, see below</td></tr></tbody></table>
+
+> If you set `BliOrDefectNumberRequired` to true, subHooker will perform a Regular Expression search of the Authors commit log, and will expect that there is a match. For example the following regular expression string :
+
+```
+([bBdD]\-[0-9]{5})
+```
+> ...will return true if any of the following strings exist in the authors commit message:
+
+**B-01234** or **b-90122** or **d-12345** or **D-99119**
+
+Lastly choose if you want to have DIFF and Change Lists in the e-mail by modifying the last two options:
+
+```
+email.contents.show.diff=true
+email.contents.show.changeset=true
+```
