@@ -159,6 +159,11 @@ public class SvnHooks {
 	}
 	
 	private boolean loadProps(Properties properties, File propsFile) {
+		
+		if(!propsFile.exists()){	
+			propsFile = new File(System.getProperty("basedir") + File.separator + "src" + File.separator + "main" + File.separator + "etc"+ File.separator + "subHooker.properties");
+		}
+	
 		Boolean success=true;
 		FileInputStream fs = null;
 		
@@ -177,7 +182,7 @@ public class SvnHooks {
 		if (!loadProps(props, propsFile)) {
 			String message = simpleI18n.getKey("CONFIGURATION_INIT_ERR_LOAD_PROPS");
 			log.error(message);
-			throw new RuntimeException(message);
+			throw new RuntimeException(message + " Props File: " + propsFile);
 		} else {			
 			mailServer = props.getProperty("mail.server.name");
 			mailPort = props.getProperty("mail.server.port");
@@ -199,7 +204,7 @@ public class SvnHooks {
 			preCommitBliNumberRequired = Boolean.parseBoolean(props.getProperty("svn.precommit.BliOrDefectNumberRequired"));
 			preCommitRegexSearch = props.getProperty("svn.precommit.BliRegex");
 			
-			postDiffMaxLines = Integer.parseInt(props.getProperty("svn.postcommit.DiffMaxCharacters"));
+			postDiffMaxLines = Integer.parseInt(props.getProperty("svn.postcommit.DiffMaxLines"));
 			postShowDiff = Boolean.parseBoolean(props.getProperty("email.contents.show.diff", "true"));
 			postShowChangeset = Boolean.parseBoolean(props.getProperty("email.contents.show.changeset", "true"));
 			

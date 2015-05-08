@@ -5,37 +5,47 @@ package org.mirageone.subversion.subHooker;
 	import java.util.List;
 	import java.util.Locale;
 	import java.util.ResourceBundle;
+	import java.io.*;
+	import java.net.URL;
+	import java.net.URLClassLoader;
 
 	public class SimpleI18n {
 
 	    private ResourceBundle messages;
+	    private ClassLoader loader;
 	    
 		public SimpleI18n(){
+			initializeBundles();
 			Locale locale = Locale.getDefault(); 
-			this.messages =  ResourceBundle.getBundle("MessageBundle", locale);
+			this.messages =  ResourceBundle.getBundle("MessageBundle", locale,loader);
 		}
 		
 		public SimpleI18n(String messageBundle){
+			initializeBundles();
 			Locale locale = Locale.getDefault(); 
-			this.messages =  ResourceBundle.getBundle(messageBundle, locale);
+			this.messages =  ResourceBundle.getBundle(messageBundle, locale,loader);
 		}
 		
 	    public SimpleI18n(Locale locale){
-			this.messages =  ResourceBundle.getBundle("MessageBundle", locale);
+	    	initializeBundles();
+			this.messages =  ResourceBundle.getBundle("MessageBundle", locale, loader);
 	    }
 	    
 	    public SimpleI18n(Locale locale,String messageBundle){
-			this.messages =  ResourceBundle.getBundle(messageBundle, locale);
+	    	initializeBundles();
+			this.messages =  ResourceBundle.getBundle(messageBundle, locale, loader);
 	    }
 	    
 	    public SimpleI18n( String lang, String country){
+	    	initializeBundles();
 			Locale currentLocale = new Locale(lang, country);
-			this.messages = ResourceBundle.getBundle("MessageBundle", currentLocale);
+			this.messages = ResourceBundle.getBundle("MessageBundle", currentLocale, loader);
 		}
 		
 	    public SimpleI18n( String lang, String country, String messageBundle){
+	    	initializeBundles();
 			Locale currentLocale = new Locale(lang, country);
-			this.messages = ResourceBundle.getBundle(messageBundle, currentLocale);
+			this.messages = ResourceBundle.getBundle(messageBundle, currentLocale, loader);
 		}
 		
 		public String getKey(String key){
@@ -58,6 +68,14 @@ package org.mirageone.subversion.subHooker;
 			 return keys.toArray(new String[keys.size()]); 
 		}
 		
-		
-		
+		private void initializeBundles()
+		{
+			try{
+				File file = new File(System.getProperty("basedir") + File.separator + "i18nSupport");
+				URL[] urls = {file.toURI().toURL()};
+				loader = new URLClassLoader(urls);
+			}catch(Exception e){
+				
+			}
+		}
 }
