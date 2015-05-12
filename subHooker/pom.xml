@@ -4,10 +4,9 @@
 	<groupId>org.mirageone.subversion.subHooker</groupId>
 	<artifactId>subHooker</artifactId>
 	<packaging>jar</packaging>
-	<version>2.4.0-SNAPSHOT</version>
 	<name>subHooker</name>
 	<description>Subversion Pre and Post Hook utility, provides nice HTML formatted commit-email messages.</description>
-	<url>http://mirageone.org</url>
+	<url>https://github.com/jjthomas3/subhooker/wiki</url>
 	<organization>
 		<name>John J Thomas</name>
 		<url>http://mirageone.org</url>
