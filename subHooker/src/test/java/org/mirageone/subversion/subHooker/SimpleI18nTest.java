@@ -1,6 +1,5 @@
 package org.mirageone.subversion.subHooker;
 
-import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class SimpleI18nTest extends TestCase {
@@ -8,7 +7,7 @@ public class SimpleI18nTest extends TestCase {
 
 	public void testGetKey() {
 		SimpleI18n i18n = new SimpleI18n("en","EN","TestBundle");
-		Assert.assertEquals("one", i18n.getKey("ONE"));
+		assertEquals("one", i18n.getKey("ONE"));
 	}
 	
 	public void testGetKeys(){
@@ -18,7 +17,7 @@ public class SimpleI18nTest extends TestCase {
 		for (String key : myI18nKeys){
 			System.out.println("\t"+key);
 		}
-		Assert.assertEquals(10, myI18nKeys.length);
+		assertEquals(10, myI18nKeys.length);
 	}
 
 }

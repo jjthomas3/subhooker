@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class EmailAssemblerTest extends TestCase {
@@ -22,12 +21,12 @@ public class EmailAssemblerTest extends TestCase {
 		System.out.println("SAMPLE EMAIL OUTPUT BELOW, FAKE DIFFF BELOW");
 		System.out.println(emailAssembler.applyTemplate());
 		System.out.println("SAMPLE EMAIL OUTPUT ABOVE, FAKE DIFFF ABOVE");
-		Assert.assertTrue((emailAssembler.applyTemplate()).toString() != null );
+		assertTrue((emailAssembler.applyTemplate()).toString() != null );
 		emailAssembler = new EmailAssembler(auth, chang, diff, log, revision, "text", true, true);
 		System.out.println("SAMPLE EMAIL OUTPUT BELOW, FAKE DIFFF BELOW");
 		System.out.println(emailAssembler.applyTemplate());
 		System.out.println("SAMPLE EMAIL OUTPUT ABOVE, FAKE DIFFF ABOVE");
-		Assert.assertTrue((emailAssembler.applyTemplate()).toString() != null );
+		assertTrue((emailAssembler.applyTemplate()).toString() != null );
 	}
 
     private String readFileAsString(String filePath){    	

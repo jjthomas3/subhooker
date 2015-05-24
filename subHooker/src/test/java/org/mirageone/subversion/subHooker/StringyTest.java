@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class StringyTest extends TestCase {
@@ -27,7 +26,7 @@ public class StringyTest extends TestCase {
 		} 
 		catch (Exception e)
 		{
-			Assert.fail(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 	

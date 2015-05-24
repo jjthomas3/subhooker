@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.*;
 
 public class EmailAssembler {
@@ -74,11 +75,7 @@ public class EmailAssembler {
 	 * rather than displayed.
 	 */
 	private String prepDiff(String diff){
-		diff=diff.replace("&lt", "&amp;lt");
-		diff=diff.replace("&gt", "&amp;gt");
-		diff=diff.replace("<", "&lt;");
-		diff=diff.replace(">", "&gt;");
-		return diff;
+			return StringUtils.replaceEach(diff, new String[]{"&", "\"", "<", ">"}, new String[]{"&amp;", "&quot;", "&lt;", "&gt;"});
 	}
 	
 	private void loadValuesMap(){
